@@ -13,6 +13,13 @@ class LogsService {
     }
     return log;
   }
+  async findByAuthor(authorId) {
+    let log = await dbContext.Logs.find({ author: authorId });
+    if (!log) {
+      throw new BadRequest("Invalid Id");
+    }
+    return log;
+  }
   async create(body) {
     let log = await dbContext.Logs.create(body)
     return log
